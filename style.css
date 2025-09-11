@@ -1,0 +1,17 @@
+/* body {
+    background-color: black;
+    color: white;
+} */
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.left {
+    width: 25vw;
+}
+
+.right {
+    width: 75vw;
+}
