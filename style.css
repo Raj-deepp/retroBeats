@@ -211,7 +211,6 @@ body {
 }
 
 .playbar {
-    display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -229,7 +228,11 @@ body {
     display: flex;
     justify-content: center;
     gap: 15px;
-    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.songbtns img {
+    cursor: pointer;
 }
 
 .seekbar {
@@ -252,4 +255,24 @@ body {
     bottom: 5px;
     left: 0%;
     transition: left 0.5s;
+}
+
+.audiotrackinfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.songinfo {
+    border: 2px solid red;
+    font-size: small;
+    color: black;
+    padding: 0 12px;
+    width: 250px;
+}
+
+.songduration {
+    border: 2px solid red;
+    width: 125px;
+    color: black;
+    padding: 0 12px;
 }
