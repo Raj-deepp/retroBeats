@@ -6,14 +6,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
-/* body {
+body {
     background-color: black;
     color: white;
-} */
-
-.logo img {
-    max-width: 40%;
-    height: auto;
 }
 
 .left {
@@ -32,4 +27,39 @@
     width: 14px;
     list-style: none;
     padding-top: 14px;
+}
+
+.heading {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    padding-top: 14px;
+    padding: 23px 14px;
+    font-weight: bold;
+    align-items: center;
+    font-size: 13px;
+}
+
+.heading img {
+    width: 25px;
+}
+
+.library {
+    min-height: 80vh;
+    position: relative;
+}
+
+.footer {
+    display: flex;
+    font-size: 10px;
+    color: grey;
+    padding: 10px 0;
+    gap: 13px;
+    position: absolute;
+    bottom: 0;
+
+}
+
+.footer a {
+    color: grey;
 }
