@@ -16,6 +16,21 @@ body {
     padding: 10px;
 }
 
+.footer {
+    display: flex;
+    font-size: 10px;
+    color: grey;
+    padding: 10px 0;
+    gap: 13px;
+    position: absolute;
+    bottom: 0;
+
+}
+
+.footer a {
+    color: grey;
+}
+
 .right {
     width: 75vw;
     margin: 16px 0;
@@ -60,22 +75,12 @@ body {
     padding: 20px;
 }
 
-.playlist {
-    padding: 16px;
-}
-
-.playlist h1 {
-    padding: 16px;
-}
-
-
-
 .buttons>* {
     margin: 0 12px;
 }
 
 .signupbtn {
-    background-color: rgb(34 34 34);
+    background-color: #121212;
     color: rgb(156, 148, 148);
     font-weight: bold;
     border: none;
@@ -104,17 +109,80 @@ body {
     font-size: 17px;
 }
 
-.footer {
-    display: flex;
-    font-size: 10px;
-    color: grey;
-    padding: 10px 0;
-    gap: 13px;
-    position: absolute;
-    bottom: 0;
-
+.playlist {
+    padding: 16px;
 }
 
-.footer a {
-    color: grey;
+.playlist h1 {
+    padding: 16px;
+}
+
+.cardContainer {
+    margin: 30px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.card {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #252525;
+    position: relative;
+    transition: all .9s;
+}
+
+.card:hover {
+    background-color: rgb(105, 103, 103);
+    cursor: pointer;
+    --a: 1;
+}
+
+.card>* {
+    padding-top: 10px;
+}
+
+.card img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.play {
+    width: 28px;
+    height: 28px;
+    background-color: #1fdf64;
+    border-radius: 50%;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 88px;
+    right: 17px;
+    opacity: var(--a);
+    transition: all 1s ease-out;
+}
+
+.playbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 30px;
+    filter: invert(1);
+    background: #e2d9d9;
+    border-radius: 10px;
+    width: 90%;
+    padding: 12px;
+    width: 70vw;
+    min-height: 40px;
+}
+
+.songbtns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
