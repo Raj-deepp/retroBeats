@@ -24,6 +24,10 @@ body {
     width: 25vw;
 }
 
+.left .close {
+    display: none;
+}
+
 .footer {
     display: flex;
     font-size: 10px;
@@ -43,9 +47,20 @@ body {
     height: 100%;
     width: 75vw;
     position: relative;
+    transition: filter 0.3s ease;
+}
+
+.home {
+    margin-bottom: 5px;
+    padding-left: 10px;
+}
+
+.logo {
+    padding-top: 10px;
 }
 
 .home ul li {
+    /* border: 2px solid red; */
     display: flex;
     font-weight: bold;
     gap: 15px;
@@ -124,6 +139,18 @@ body {
 
 .buttons>* {
     margin: 0 12px;
+}
+
+.hamContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
 }
 
 .signupbtn {
@@ -287,4 +314,54 @@ body {
     display: flex;
     justify-content: end;
     align-items: center;
+}
+
+
+@media (max-width: 1200px) {
+    .left {
+        position: absolute;
+        left: -130%;
+        transition: all .3s;
+        z-index: 1;
+        width: 40vh;
+        background-color: black;
+        padding: 0;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+    }
+
+    .songinfo,
+    .songtime {
+        width: auto;
+    }
+
+    .left .close {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+    }
+
+    .right {
+        width: 100vw;
+        margin: 0;
+    }
+
+    .playbar {
+        width: calc(100vw - 75px);
+    }
+
+    .seekbar {
+        width: calc(100vw - 120px);
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .card {
+        width: 55vw;
+    }
+
 }

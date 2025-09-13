@@ -10,7 +10,10 @@
   <body>
     <div class="container flex bg-black">
       <div class="left rounded">
-        <div class="home rounded">
+        <div class="close invert">
+          <img src="close.svg" alt="" />
+        </div>
+        <div class="home rounded bg-grey">
           <div class="logo">
             <img class="invert" src="RB_Logo.svg" alt="" />
           </div>
@@ -63,28 +66,31 @@
       <div class="right bg-grey rounded">
         <div class="header">
           <div class="navbar">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M19.2 2.43L16.778 0L4.8 12l11.978 12l2.422-2.43L9.653 12z"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M4.8 21.57L7.222 24L19.2 12L7.222 0L4.8 2.43L14.347 12z"
-              />
-            </svg>
+            <div class="hamContainer">
+              <img class="hamburger invert" src="hamburger.svg" alt="" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M19.2 2.43L16.778 0L4.8 12l11.978 12l2.422-2.43L9.653 12z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M4.8 21.57L7.222 24L19.2 12L7.222 0L4.8 2.43L14.347 12z"
+                />
+              </svg>
+            </div>
           </div>
           <div class="buttons">
             <button class="signupbtn">Sign up</button>

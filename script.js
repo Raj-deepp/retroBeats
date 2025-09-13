@@ -106,6 +106,17 @@ async function main() {
     currSong.currentTime =
       (e.offsetX / e.target.getBoundingClientRect().width) * currSong.duration;
   });
+
+  //Hamburger
+  document.querySelector(".hamburger").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "0";
+    document.querySelector(".right").classList.add("dimmed");
+  });
+
+  document.querySelector(".close").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "-120%";
+    document.querySelector(".right").classList.remove("dimmed");
+  });
 }
 
 main();

@@ -24,6 +24,11 @@
     filter: invert(1);
 }
 
+.dimmed {
+    filter: brightness(0.5);
+    pointer-events: none;
+}
+
 .bg-grey {
     background-color: #121212;
 }
