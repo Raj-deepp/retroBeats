@@ -32,17 +32,20 @@ async function getSongs() {
   return songs;
 }
 
-const playMusic = (audiotrack) => {
+const playMusic = (audiotrack, pause = false) => {
   //   let audio = new Audio("/songs/" + audiotrack);
   currSong.src = "/songs/" + audiotrack;
-  currSong.play();
-  play.src = "pause.svg";
-  document.querySelector(".songinfo").innerHTML = audiotrack;
+  if (!pause) {
+    currSong.play();
+    play.src = "pause.svg";
+  }
+  document.querySelector(".songinfo").innerHTML = decodeURI(audiotrack);
   document.querySelector(".songduration").innerHTML = "00:00 / 00:00";
 };
 
 async function main() {
   let songs = await getSongs();
+  playMusic(songs[0], true);
 
   let songUL = document
     .querySelector(".songList")
@@ -58,7 +61,6 @@ async function main() {
           <div>Kishore</div>
         </div>
         <div class="playnow">
-          <span>Play Now</span>
           <img class="invert" src="play.svg" alt="" />
         </div>
       </li>`;
@@ -86,12 +88,23 @@ async function main() {
   });
 
   currSong.addEventListener("timeupdate", () => {
-    console.log(currSong.currtime, currSong.duration);
+    console.log(currSong.currentTime, currSong.duration);
+
     document.querySelector(
       ".songduration"
     ).innerHTML = `${secondsToMinutesSeconds(
       currSong.currentTime
     )} / ${secondsToMinutesSeconds(currSong.duration)}`;
+
+    document.querySelector(".circle").style.left =
+      (currSong.currentTime / currSong.duration) * 100 + "%";
+  });
+
+  document.querySelector(".seekbar").addEventListener("click", (e) => {
+    document.querySelector(".circle").style.left =
+      (e.offsetX / e.target.getBoundingClientRect().width) * 100 + "%";
+    currSong.currentTime =
+      (e.offsetX / e.target.getBoundingClientRect().width) * currSong.duration;
   });
 }
 
