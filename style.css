@@ -24,16 +24,20 @@ body {
     width: 25vw;
 }
 
-.left .close {
+.left .closebtn {
     display: none;
 }
 
 .footer {
+    /* border: 2px solid red; */
     display: flex;
+    margin-left: 10px;
+    width: 95%;
     font-size: 10px;
     color: grey;
     padding: 10px 0;
-    gap: 13px;
+    /* gap: 13px; */
+    justify-content: space-between;
     position: absolute;
     bottom: 0;
 
@@ -56,7 +60,16 @@ body {
 }
 
 .logo {
+    /* border: 2px solid red; */
     padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    /* border: 2px solid blue; */
+    width: 200px;
 }
 
 .home ul li {
@@ -66,7 +79,7 @@ body {
     gap: 15px;
     width: 14px;
     list-style: none;
-    padding-top: 14px;
+    padding-top: 5px;
 }
 
 .heading {
@@ -241,14 +254,15 @@ body {
 }
 
 .playbar {
+    /* border: 2px solid red; */
     position: fixed;
     bottom: 30px;
     filter: invert(1);
     background: #e2d9d9;
     border-radius: 10px;
-    width: 90%;
+    width: 70.5%;
     padding: 12px;
-    width: 70vw;
+    /* width: 70vw; */
     min-height: 40px;
 
 }
@@ -323,12 +337,11 @@ body {
         left: -130%;
         transition: all .3s;
         z-index: 1;
-        width: 40vh;
+        width: 41vh;
         background-color: black;
         padding: 0;
         height: 100vh;
         position: fixed;
-        top: 0;
     }
 
     .songinfo,
@@ -336,12 +349,20 @@ body {
         width: auto;
     }
 
-    .left .close {
+    .left .closebtn {
         display: block;
         position: absolute;
         right: 15px;
         top: 15px;
     }
+
+    /* .timevol {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        gap: 13px;
+    } */
 
     .right {
         width: 100vw;
@@ -349,11 +370,11 @@ body {
     }
 
     .playbar {
-        width: calc(100vw - 75px);
+        width: calc(100vw - 50px);
     }
 
     .seekbar {
-        width: calc(100vw - 120px);
+        width: calc(100vw - 75px);
     }
 
     .hamburger {
@@ -364,4 +385,36 @@ body {
         width: 55vw;
     }
 
+    .cardContainer {
+        margin: 0;
+        justify-content: center;
+    }
+
+    .cardContainer {
+        max-height: unset;
+        overflow-y: unset;
+        margin-bottom: 35vh;
+    }
+
+    .songList{
+        /* border: 2px solid red; */
+        height: 73vh;
+    }
+
+    .playbar {
+        right: 25px;
+    }
+
+    .audiotrackinfo {
+        /* border: 2px solid red; */
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .songduration {
+        /* border: 2px solid red; */
+        width: 50%;
+        justify-content: center;
+    }
 }
