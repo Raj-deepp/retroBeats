@@ -137,6 +137,46 @@ async function main() {
       playMusic(songs[index + 1]);
     }
   });
+
+  //volume
+  const volumeSlider = document.querySelector(".volume input");
+  const volumeIcon = document.querySelector(".volume img");
+  let lastVolume = volumeSlider.value / 100 || 1;
+
+  function updateVolumeIcon(vol) {
+    if (vol === 0) {
+      volumeIcon.src = "mute.svg";
+    } else if (vol > 0 && vol <= 0.3) {
+      volumeIcon.src = "volume1.svg";
+    } else if (vol > 0.3 && vol <= 0.6) {
+      volumeIcon.src = "volume2.svg";
+    } else {
+      volumeIcon.src = "volume3.svg";
+    }
+  }
+
+  volumeSlider.addEventListener("input", (e) => {
+    currSong.volume = e.target.value / 100;
+    if (currSong.volume > 0) {
+      lastVolume = currSong.volume;
+    }
+    updateVolumeIcon(currSong.volume);
+  });
+
+  volumeIcon.addEventListener("click", () => {
+    if (currSong.volume > 0) {
+      lastVolume = currSong.volume;
+      currSong.volume = 0;
+      volumeSlider.value = 0;
+    } else {
+      currSong.volume = lastVolume;
+      volumeSlider.value = lastVolume * 100;
+    }
+    updateVolumeIcon(currSong.volume);
+  });
+
+  currSong.volume = volumeSlider.value / 100;
+  updateVolumeIcon(currSong.volume);
 }
 
 main();
