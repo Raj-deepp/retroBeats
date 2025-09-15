@@ -201,15 +201,18 @@ body {
 }
 
 .playlist {
+    /* border: 2px solid red; */
     padding: 16px;
 }
 
 .playlist h1 {
+    /* border: 2px solid yellow; */
     padding: 16px;
 }
 
 .cardContainer {
-    margin: 30px;
+    /* border: 2px solid burlywood; */
+    margin: 10px 0;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -223,13 +226,14 @@ body {
     border-radius: 5px;
     background-color: #252525;
     position: relative;
-    transition: all .9s;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
 }
 
 .card:hover {
-    background-color: rgb(105, 103, 103);
+    background-color: rgb(88, 86, 86);
     cursor: pointer;
-    --a: 1;
+    /* --a: 1; */
 }
 
 .card>* {
@@ -251,10 +255,16 @@ body {
     align-items: center;
     justify-content: center;
     position: absolute;
-    bottom: 88px;
-    right: 17px;
+    bottom: 122px;
+    right: 18px;
     opacity: var(--a);
-    transition: all 1s ease-out;
+    transform: translateY(40px);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.card:hover .play {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .playbar {
@@ -398,16 +408,18 @@ body {
         display: block;
     }
 
-    .card {
-        width: 55vw;
-    }
-
     .cardContainer {
+        /* border: 2px solid red; */
         margin: 0;
         justify-content: center;
         max-height: unset;
         overflow-y: unset;
         margin-bottom: 35vh;
+    }
+
+    .card {
+        /* border: 2px solid blue; */
+        width: 73vw;
     }
 
     .songList {
@@ -416,7 +428,9 @@ body {
     }
 
     .playbar {
+        /* border: 2px solid red; */
         right: 25px;
+        bottom: 20px;
     }
 
     .audiotrackinfo {
@@ -430,6 +444,5 @@ body {
         /* border: 2px solid red; */
         width: 100%;
         justify-content: space-around;
-        /* justify-content: center; */
     }
 }
