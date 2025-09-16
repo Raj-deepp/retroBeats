@@ -138,6 +138,15 @@ body {
     word-break: break-all;
 }
 
+.title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.artist {
+    font-size: 0.8rem;
+}
+
 .playnow {
     display: flex;
     justify-content: center;
@@ -207,7 +216,7 @@ body {
 
 .playlist h1 {
     /* border: 2px solid yellow; */
-    padding: 16px;
+    padding: 0 16px 10px 16px;
 }
 
 .cardContainer {
@@ -217,7 +226,8 @@ body {
     gap: 10px;
     flex-wrap: wrap;
     overflow-y: auto;
-    /* max-height: 60vh; */
+    max-height: 67vh;
+    padding-bottom: 20px;
 }
 
 .card {
@@ -409,12 +419,12 @@ body {
     }
 
     .cardContainer {
-        /* border: 2px solid red; */
+        border: 2px solid red;
         margin: 0;
         justify-content: center;
         max-height: unset;
         overflow-y: unset;
-        margin-bottom: 35vh;
+        margin-bottom: 15vh;
     }
 
     .card {

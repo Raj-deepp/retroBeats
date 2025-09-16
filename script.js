@@ -39,13 +39,15 @@ async function getSongs(folder) {
   songUL.innerHTML = "";
 
   for (const song of songs) {
+    let cleanSong = song.replaceAll("%20", " ").replace(".mp3", "");
+    let [title, artist] = cleanSong.split(" - ");
     songUL.innerHTML =
       songUL.innerHTML +
       `<li> 
         <img class="invert" src="music.svg" alt="" />
         <div class="info">
-          <div>${song.replaceAll("%20", " ")}</div>
-          <div>Kishore</div>
+          <div class = "title">${title}</div>
+        <div class = "artist">${artist}</div>
         </div>
         <div class="playnow">
           <img class="invert" src="play.svg" alt="" />
