@@ -18,7 +18,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getSongs(folder) {
   currFolder = folder;
-  let response = await fetch("/public/songs.json");
+  let response = await fetch("/songs/songs.json");
   let allSongs = await response.json();
   songs = allSongs[folder] || [];
 
@@ -41,17 +41,17 @@ async function getSongs(folder) {
 
   for (const song of songs) {
     let cleanSong = song.replaceAll("%20", " ").replace(".mp3", "");
-    let [title, artist] = cleanSong.split(" - ");
+    let [title, artist] = cleanSong.split("-");
     songUL.innerHTML =
       songUL.innerHTML +
       `<li> 
-        <img class="invert" src="/public/img/music.svg" alt="" />
+        <img class="invert" src="/img/music.svg" alt="" />
         <div class="info">
-          <div class = "title">${title}</div>
-        <div class = "artist">${artist}</div>
+          <div class = "title">${title.replaceAll("_", " ")}</div>
+        <div class = "artist">${artist.replaceAll("_", " ")}</div>
         </div>
         <div class="playnow">
-          <img class="invert" src="/public/img/play.svg" alt="" />
+          <img class="invert" src="/img/play.svg" alt="" />
         </div>
       </li>`;
   }
@@ -72,15 +72,15 @@ const playMusic = (audiotrack, pause = false) => {
   //   let audio = new Audio("/songs/" + audiotrack);
   const track = songs.find((s) => s.includes(audiotrack));
   if (!track) return console.error("Track not found:", audiotrack);
-  currSong.src = `/public/songs/${currFolder}/${track}`;
+  currSong.src = `/songs/${currFolder}/${track}`;
   if (!pause) {
     currSong.play();
-    play.src = "/public/img/pause.svg";
+    play.src = "/img/pause.svg";
   }
-  document.querySelector(".songinfo").innerHTML = decodeURI(audiotrack).replace(
-    ".mp3",
-    ""
-  );
+  document.querySelector(".songinfo").innerHTML = decodeURI(audiotrack)
+    .replaceAll("_", " ")
+    .replaceAll("-", " - ")
+    .replace(".mp3", "");
   document.querySelector(".songduration").innerHTML = "00:00 / 00:00";
 };
 
@@ -89,13 +89,13 @@ async function displayAlbums() {
   cardContainer.innerHTML = "";
 
   // Fetch songs.json to get all folders
-  const res = await fetch("/public/songs.json");
+  const res = await fetch("/songs/songs.json");
   const allSongs = await res.json();
   const folders = Object.keys(allSongs);
 
   for (const folder of folders) {
     try {
-      const infoRes = await fetch(`/public/songs/${folder}/info.json`);
+      const infoRes = await fetch(`/songs/${folder}/info.json`);
       const info = await infoRes.json();
 
       cardContainer.innerHTML += `
@@ -107,7 +107,7 @@ async function displayAlbums() {
                     stroke-linejoin="round" />
             </svg>
           </div>
-          <img src="/public/songs/${folder}/cover.jpg" alt="">
+          <img src="/songs/${folder}/cover.jpg" alt="">
           <h2>${info.title}</h2>
           <p>${info.description}</p>
         </div>`;
@@ -127,7 +127,7 @@ async function displayAlbums() {
 }
 
 async function main() {
-  let folders = Object.keys(await (await fetch("/public/songs.json")).json());
+  let folders = Object.keys(await (await fetch("/songs/songs.json")).json());
   if (folders.length > 0) {
     await getSongs(folders[0]);
     if (songs.length > 0) playMusic(songs[0], true);
@@ -139,10 +139,10 @@ async function main() {
   play.addEventListener("click", () => {
     if (currSong.paused) {
       currSong.play();
-      play.src = "/public/img/pause.svg";
+      play.src = "/img/pause.svg";
     } else {
       currSong.pause();
-      play.src = "/public/img/play.svg";
+      play.src = "/img/play.svg";
     }
   });
 
@@ -203,13 +203,13 @@ async function main() {
 
   function updateVolumeIcon(vol) {
     if (vol === 0) {
-      volumeIcon.src = "/public/img/mute.svg";
+      volumeIcon.src = "/img/mute.svg";
     } else if (vol > 0 && vol <= 0.3) {
-      volumeIcon.src = "/public/img/volume1.svg";
+      volumeIcon.src = "/img/volume1.svg";
     } else if (vol > 0.3 && vol <= 0.6) {
-      volumeIcon.src = "/public/img/volume2.svg";
+      volumeIcon.src = "/img/volume2.svg";
     } else {
-      volumeIcon.src = "/public/img/volume3.svg";
+      volumeIcon.src = "/img/volume3.svg";
     }
   }
 

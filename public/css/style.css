@@ -227,11 +227,12 @@ body {
     flex-wrap: wrap;
     overflow-y: auto;
     max-height: 67vh;
-    padding-bottom: 20px;
 }
 
 .card {
+    /* border: 2px solid red; */
     width: 200px;
+    /* height: 300px; */
     padding: 10px;
     border-radius: 5px;
     background-color: #252525;
@@ -432,8 +433,9 @@ body {
     }
 
     .card {
-        /* border: 2px solid blue; */
+        /* border: 2px solid fuchsia; */
         width: 73vw;
+        /* height: 5rem; */
     }
 
     .songList {
@@ -487,7 +489,7 @@ body {
             padding-bottom: 2.5rem;
         }
 
-        .header>*{
+        .header>* {
             /* border: 2px solid red; */
             padding: 0;
         }
