@@ -44,13 +44,13 @@ async function getSongs(folder) {
     songUL.innerHTML =
       songUL.innerHTML +
       `<li> 
-        <img class="invert" src="music.svg" alt="" />
+        <img class="invert" src="img/music.svg" alt="" />
         <div class="info">
           <div class = "title">${title}</div>
         <div class = "artist">${artist}</div>
         </div>
         <div class="playnow">
-          <img class="invert" src="play.svg" alt="" />
+          <img class="invert" src="img/play.svg" alt="" />
         </div>
       </li>`;
   }
@@ -72,9 +72,12 @@ const playMusic = (audiotrack, pause = false) => {
   currSong.src = `/${currFolder}/` + audiotrack;
   if (!pause) {
     currSong.play();
-    play.src = "pause.svg";
+    play.src = "img/pause.svg";
   }
-  document.querySelector(".songinfo").innerHTML = decodeURI(audiotrack);
+  document.querySelector(".songinfo").innerHTML = decodeURI(audiotrack).replace(
+    ".mp3",
+    ""
+  );
   document.querySelector(".songduration").innerHTML = "00:00 / 00:00";
 };
 
@@ -139,10 +142,10 @@ async function main() {
   play.addEventListener("click", () => {
     if (currSong.paused) {
       currSong.play();
-      play.src = "pause.svg";
+      play.src = "img/pause.svg";
     } else {
       currSong.pause();
-      play.src = "play.svg";
+      play.src = "img/play.svg";
     }
   });
 
@@ -203,13 +206,13 @@ async function main() {
 
   function updateVolumeIcon(vol) {
     if (vol === 0) {
-      volumeIcon.src = "mute.svg";
+      volumeIcon.src = "img/mute.svg";
     } else if (vol > 0 && vol <= 0.3) {
-      volumeIcon.src = "volume1.svg";
+      volumeIcon.src = "img/volume1.svg";
     } else if (vol > 0.3 && vol <= 0.6) {
-      volumeIcon.src = "volume2.svg";
+      volumeIcon.src = "img/volume2.svg";
     } else {
-      volumeIcon.src = "volume3.svg";
+      volumeIcon.src = "img/volume3.svg";
     }
   }
 
