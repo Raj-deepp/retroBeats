@@ -22,18 +22,6 @@ async function getSongs(folder) {
   let allSongs = await response.json();
   songs = allSongs[folder] || [];
 
-  // let div = document.createElement("div");
-  // div.innerHTML = response;
-  // let a = div.getElementsByTagName("a");
-
-  // songs = [];
-  // for (let index = 0; index < a.length; index++) {
-  //   const element = a[index];
-  //   if (element.href.endsWith(".mp3")) {
-  //     songs.push(element.href.split(`/${folder}/`)[1]);
-  //   }
-  // }
-
   let songUL = document
     .querySelector(".songList")
     .getElementsByTagName("ul")[0];
@@ -44,7 +32,7 @@ async function getSongs(folder) {
     let [title, artist] = cleanSong.split("-");
     songUL.innerHTML =
       songUL.innerHTML +
-      `<li> 
+      `<li data-file="${song}"> 
         <img class="invert" src="/img/music.svg" alt="" />
         <div class="info">
           <div class = "title">${title.replaceAll("_", " ")}</div>
@@ -56,13 +44,10 @@ async function getSongs(folder) {
       </li>`;
   }
 
-  //EL each song
-  Array.from(
-    document.querySelector(".songList").getElementsByTagName("li")
-  ).forEach((e) => {
-    e.addEventListener("click", (element) => {
-      //   console.log(e.querySelector(".info").firstElementChild.innerHTML);
-      playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
+  //EventListener each song
+  Array.from(songUL.getElementsByTagName("li")).forEach((li) => {
+    li.addEventListener("click", () => {
+      playMusic(li.dataset.file);
     });
   });
   return songs;
@@ -72,17 +57,57 @@ const playMusic = (audiotrack, pause = false) => {
   //   let audio = new Audio("/songs/" + audiotrack);
   const track = songs.find((s) => s.includes(audiotrack));
   if (!track) return console.error("Track not found:", audiotrack);
+
+  if (currSong.src.includes(track)) {
+    if (currSong.paused) {
+      currSong.play();
+      play.src = "/img/pause.svg";
+      updateSongIcons(track, true);
+    } else {
+      currSong.pause();
+      play.src = "/img/play.svg";
+      updateSongIcons(track, false);
+    }
+    return;
+  }
+
   currSong.src = `/songs/${currFolder}/${track}`;
   if (!pause) {
     currSong.play();
     play.src = "/img/pause.svg";
+    updateSongIcons(track, true);
+  } else {
+    play.src = "/img/play.svg";
+    updateSongIcons(track, false);
   }
-  document.querySelector(".songinfo").innerHTML = decodeURI(audiotrack)
+  // currSong.src = `/songs/${currFolder}/${track}`;
+  // if (!pause) {
+  //   currSong.play();
+  //   play.src = "/img/pause.svg";
+  // }
+  document.querySelector(".songinfo").innerHTML = decodeURI(track)
     .replaceAll("_", " ")
     .replaceAll("-", " - ")
     .replace(".mp3", "");
   document.querySelector(".songduration").innerHTML = "00:00 / 00:00";
+  // updateSongIcons(track, true);
 };
+
+function updateSongIcons(currTrack, isPlaying) {
+  document.querySelectorAll(".songList li .playnow img").forEach((icon) => {
+    icon.src = "/img/play.svg";
+  });
+
+  const currentLi = Array.from(document.querySelectorAll(".songList li")).find(
+    (li) => li.dataset.file === currTrack
+  );
+
+  if (currentLi) {
+    currentLi.querySelector(".playnow img").src = isPlaying
+      ? "/img/pause.svg"
+      : "/img/play.svg";
+  }
+}
 
 async function displayAlbums() {
   const cardContainer = document.querySelector(".cardContainer");
@@ -119,7 +144,7 @@ async function displayAlbums() {
   // Load playlist when a card is clicked
   Array.from(document.getElementsByClassName("card")).forEach((card) => {
     card.addEventListener("click", async () => {
-      console.log("Fetching Songs");
+      // console.log("Fetching Songs");
       songs = await getSongs(card.dataset.folder);
       playMusic(songs[0]);
     });
@@ -137,13 +162,10 @@ async function main() {
 
   //EL P P N
   play.addEventListener("click", () => {
-    if (currSong.paused) {
-      currSong.play();
-      play.src = "/img/pause.svg";
-    } else {
-      currSong.pause();
-      play.src = "/img/play.svg";
-    }
+    if (!currSong.src) return;
+
+    let currentTrack = decodeURIComponent(currSong.src.split("/").pop());
+    playMusic(currentTrack, currSong.paused);
   });
 
   currSong.addEventListener("timeupdate", () => {
